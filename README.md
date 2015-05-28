@@ -40,6 +40,15 @@ LABELS=['aar', 'android']
 
 The `PACKAGE_NAME` and `BINTRAY_REPOSITORY` are important, the first one represent the name of the package that "must exist" into the second one.
 
+### 5. Add dependencies
+
+Add the following dependencies to the project root build.gradle
+
+```properties
+classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
+classpath 'com.github.dcendents:android-maven-plugin:1.2'
+```
+
 ### 5. Call the script from each sub-modules build.gradle
 
 Add the following at the end of each `build.gradle` that you wish to upload:
