@@ -49,7 +49,7 @@ classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
 classpath 'com.github.dcendents:android-maven-plugin:1.2'
 ```
 
-### 5. Call the script from each sub-modules build.gradle
+### 6. Call the script from each sub-modules build.gradle
 
 Add the following at the end of each `build.gradle` that you wish to upload:
 
@@ -57,7 +57,7 @@ Add the following at the end of each `build.gradle` that you wish to upload:
 apply from: 'https://raw.githubusercontent.com/PiDyGB/gradle-bintray-push/master/gradle-bintray-push.gradle'
 ```
 
-### 6. Build and Push
+### 7. Build and Push
 
 You can now build and push:
 
