@@ -1,0 +1,82 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+group = GROUP
+version = VERSION_NAME
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options.links("http://docs.oracle.com/javase/7/docs/api/");
+    options.linksOffline "http://d.android.com/reference", "${android.sdkDirectory}/docs/reference"
+    exclude '**/BuildConfig.java'
+    exclude '**/R.java'
+    failOnError = false
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+
+install {
+    repositories.mavenInstaller {
+
+        pom.project {
+            name PACKAGE_NAME
+            packaging POM_PACKAGING
+            description POM_DESCRIPTION
+            url POM_URL
+
+            scm {
+                url SCM_URL
+                connection SCM_CONNECTION
+                developerConnection SCM_DEV_CONNECTION
+            }
+
+            licenses {
+                license {
+                    name LICENSE_NAME
+                    url LICENSE_URL
+                }
+            }
+
+            developers {
+                developer {
+                    id DEVELOPER_ID
+                    name DEVELOPER_NAME
+                    email = DEVELOPER_EMAIL
+                }
+            }
+        }
+    }
+}
+
+bintray {
+
+    user = BINTRAY_USER
+    key = BINTRAY_APIKEY
+
+    configurations = ['archives'] //When uploading configuration files
+    pkg {
+        repo = BINTRAY_REPOSITORY
+        name = PACKAGE_NAME
+        desc = POM_DESCRIPTION
+        websiteUrl = POM_URL
+        issueTrackerUrl = SCM_ISSUETRACKER
+        vcsUrl = SCM_URL
+        licenses = [LICENSE_NAME]
+        labels = LABELS
+        publicDownloadNumbers = true
+    }
+}
