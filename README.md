@@ -45,8 +45,8 @@ The `PACKAGE_NAME` and `BINTRAY_REPOSITORY` are important, the first one represe
 Add the following dependencies to the project root build.gradle
 
 ```properties
-classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
-classpath 'com.github.dcendents:android-maven-plugin:1.2'
+classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.3.1'
+classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
 ```
 
 ### 6. Call the script from each sub-modules build.gradle
